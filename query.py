@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, url_for, flash, jsonify
 from flask_login import login_required, current_user
 import pandas as pd
 from . import housing_db
@@ -9,7 +9,7 @@ housing_collection = housing_db.listingsAndReviews
 
 
 # return all the result in the dataset and present them in a form of database
-@query.route('/result-all', methods=['GET', 'POST', 'OPTIONS'])
+@query.route('/result', methods=['GET', 'POST', 'OPTIONS'])
 @login_required
 def result_all(page=1, **kargs):
     page = request.args.get('page', 1, type=int)
@@ -58,11 +58,13 @@ def result_all(page=1, **kargs):
     num_pages = (total_items + items_per_page - 1) // items_per_page  # Calculate total pages
 
     # Select the desired fields from the MongoDB documents
-    selected_fields = ['name', 'summary', 'property_type', 'accommodates', 'bedrooms', 'bathrooms']
+    selected_fields = ['_id', 'name', 'summary', 'property_type', 'accommodates', 'bedrooms', 'bathrooms']
     selected_data = []
 
     for item in result:
         selected_item = {field: item.get(field, None) for field in selected_fields}
+        selected_item['info'] = item
+        selected_item['id'] = item.get('_id', None)
         selected_data.append(selected_item)
 
     df = pd.DataFrame(selected_data)
@@ -78,5 +80,12 @@ def result_all(page=1, **kargs):
         bathrooms=bathrooms)
 
 
+@query.route('/house/<int:house_id>')
+@login_required
+def house_details(house_id):
+    # Retrieve the details of the house with the provided house_id
+    # You should implement your logic to fetch the house details based on house_id
+    house = get_house_details_by_id(house_id)  # Replace with your data retrieval logic
 
-
+    # Pass the house details to the house_details template
+    return render_template('house_details.html', house=house)
