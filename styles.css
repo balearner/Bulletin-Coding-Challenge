@@ -1,0 +1,157 @@
+/* Set the background color to baby blue */
+table.styled-table {
+    background-color: #f7f9fa;
+}
+
+/* Add some padding and set the font family */
+table.styled-table th, table.styled-table td {
+    padding: 6px;
+    font-family: Arial, sans-serif;
+}
+
+/* Center-align table content */
+table.styled-table {
+    margin: 0 auto;
+}
+
+/* Style the table header */
+table.styled-table th {
+    background-color: #89CFF0; /* Baby blue for header */
+    color: white; /* White text for header */
+}
+
+/* Style alternating rows */
+table.styled-table tbody tr:nth-child(odd) {
+    background-color: #EFEFEF; /* Light gray for odd rows */
+}
+
+/* Style table borders */
+table.styled-table th, table.styled-table td {
+    border: 0.5px solid #ddd; /* Gray border */
+}
+
+.centered-heading {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: grey; /* Set text color to grey */
+    font-family: 'Playfair Display', sans-serif; /* Specify a decent font */
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin to create space below the header */
+}
+
+.custom-button {
+        background-color: #3498db; /* Baby blue color */
+        color: #ffffff; /* White text color */
+        padding: 10px 20px; /* Adjust padding for the button */
+        border: none; /* Remove button border */
+        border-radius: 5px; /* Add rounded corners */
+        font-size: 16px; /* Set font size */
+        cursor: pointer; /* Add pointer cursor on hover */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+/* Style for the button on hover */
+.custom-button:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+}
+
+/* Center the button */
+.button-container {
+    text-align: left;
+}
+
+
+.filter-bar {
+    background-color: #f2f2f2; /* Light gray background color */
+    padding: 10px; /* Add some padding */
+    text-align: center; /* Center-align text */
+    margin-bottom: 20px; /* Add spacing below the filter bar */
+    display: flex; /* Display items in a flex container */
+    justify-content: center; /* Center-align the content horizontally */
+    align-items: center; /* Center-align the content vertically */
+}
+
+/* Style for individual filter items within the bar */
+.filter-item {
+    margin: 0 40px; /* Add spacing between filter items (adjust as needed) */
+    font-size: 16px; /* Adjust font size as needed */
+    color: #666; /* Gray text color */
+    font-weight: bold; /* Bold font weight */
+}
+
+
+/* CSS styles for centered pagination */
+.pagination {
+    text-align: center; /* Center the pagination links */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination-list {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.pagination-item a {
+    text-decoration: none;
+    padding: 8px 12px;
+    background-color: #89CFF0;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.pagination-item a:hover {
+    background-color: #89CFF0;
+}
+
+.pagination-item.active {
+    background-color: #89CFF0;
+}
+
+
+.sidebar {
+    width: 25%; /* Adjust the width as needed */
+    background-color: #f0f0f0; /* Sidebar background color */
+    padding: 20px;
+}
+
+/* Additional styles for filter form and elements */
+.filter {
+    margin-bottom: 20px;
+}
+
+/* Style your filter elements, e.g., select dropdowns and buttons, as needed */
+.filter select, .filter button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Style your button */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+/* styles.css */
+
+/* Container styles */
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Content styles */
+.content {
+    width: 75%; /* Adjust the width for your content */
+    /* Additional styles for your content */
+}
