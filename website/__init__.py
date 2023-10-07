@@ -7,7 +7,10 @@ from pymongo import MongoClient
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
-connection_string = 'mongodb+srv://xinyue:bulletin@cluster0.anxcbeb.mongodb.net/?retryWrites=true&w=majority'
+# MongoDB Access
+# user_name: user
+# password:bulletin
+connection_string = 'mongodb+srv://user:bulletin@cluster0.anxcbeb.mongodb.net/?retryWrites=true&w=majority'
 client = MongoClient(connection_string)
 
 housing_db = client.sample_airbnb
