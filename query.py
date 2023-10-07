@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 import pandas as pd
 from . import housing_db
 import json
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
 
 query = Blueprint('query', __name__)
 housing_collection = housing_db.listingsAndReviews
@@ -58,13 +60,20 @@ def result_all(page=1, **kargs):
     num_pages = (total_items + items_per_page - 1) // items_per_page  # Calculate total pages
 
     # Select the desired fields from the MongoDB documents
-    selected_fields = ['_id', 'name', 'summary', 'property_type', 'accommodates', 'bedrooms', 'bathrooms']
+    selected_fields = ['_id', 'name', 'property_type', 'accommodates', 'bedrooms', 'bathrooms','price']
     selected_data = []
 
     for item in result:
         selected_item = {field: item.get(field, None) for field in selected_fields}
+        address_dict = item.get('address', None)
+        street = address_dict['street'].strip() + ', ' + address_dict['suburb'].strip()
+        district = address_dict['government_area'].strip()
+        city = address_dict['market'].strip()
         selected_item['info'] = item
         selected_item['id'] = item.get('_id', None)
+        selected_item['street'] = street
+        selected_item['district'] = district
+        selected_item['city'] = city
         selected_data.append(selected_item)
 
     df = pd.DataFrame(selected_data)
@@ -80,12 +89,12 @@ def result_all(page=1, **kargs):
         bathrooms=bathrooms)
 
 
-@query.route('/house/<int:house_id>')
+@query.route('/house/<house_id>')
 @login_required
 def house_details(house_id):
-    # Retrieve the details of the house with the provided house_id
-    # You should implement your logic to fetch the house details based on house_id
-    house = get_house_details_by_id(house_id)  # Replace with your data retrieval logic
-
-    # Pass the house details to the house_details template
+    house_cursor = housing_collection.find({'_id': house_id})
+    house_list = []
+    for item in house_cursor:
+        house_list.append(item)
+    house = house_list[0]
     return render_template('house_details.html', house=house)
