@@ -5,22 +5,27 @@
 </head>
 
 <body>
+<p style="color: lightgray; font-family: 'Verdana', sans-serif;">
+This is not modified based on the template. I wrote it myself, so it may be rough...</p>
 <div class="container">
     <h1 class="centered-heading">Here are the results we find for you!</h1>
     <div class="filter-bar">
-    <p class="filter-item">Property Type: {% if request.args.get('property_type') %}{{ request.args.get('property_type')
-        }}{% else %}Any{% endif %}</p>
-    <p class="filter-item">Accommodates: {% if request.args.get('accommodates') %}{{ request.args.get('accommodates')
-        }}{% else %}Any{% endif %}</p>
-    <p class="filter-item">Bedrooms: {% if request.args.get('bedrooms') %}{{ request.args.get('bedrooms') }}{% else
-        %}Any{% endif %}</p>
-    <p class="filter-item">Bathrooms: {% if request.args.get('bathrooms') %}{{ request.args.get('bathrooms') }}{% else
-        %}Any{% endif %}</p>
+        <p class="filter-item">Property Type: {% if request.args.get('property_type') %}{{
+            request.args.get('property_type')
+            }}{% else %}Any{% endif %}</p>
+        <p class="filter-item">Accommodates: {% if request.args.get('accommodates') %}{{
+            request.args.get('accommodates')
+            }}{% else %}Any{% endif %}</p>
+        <p class="filter-item">Bedrooms: {% if request.args.get('bedrooms') %}{{ request.args.get('bedrooms') }}{% else
+            %}Any{% endif %}</p>
+        <p class="filter-item">Bathrooms: {% if request.args.get('bathrooms') %}{{ request.args.get('bathrooms') }}{%
+            else
+            %}Any{% endif %}</p>
 
-</div>
+    </div>
     <div class="content">
-            <div class="sidebar">
-            <h2>Filter Options</h2>
+        <div class="sidebar">
+            <h2 class="filter-head">Filter Options</h2>
             <form method="GET">
                 <div>
                     <label for="accommodates">Number of accommodates:</label>
@@ -70,35 +75,39 @@
                     <button type="submit" class="custom-button">Submit Filter</button>
                 </div>
             </form>
+        </div>
+        <div class="table">
+            <table class="styled-table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>District</th>
+                    <th>Property Type</th>
+                    <th>Accommodates</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for index,row in data.iterrows() %}
+                <tr>
+                    <td><a href="{{ url_for('query.house_details', house_id=row['id']) }}">{{ row['name'] }}</a></td>
+                    <td>{{ row['city'] }}</td>
+                    <td>{{ row['district'] }}</td>
+                    <td>{{ row['property_type'] }}</td>
+                    <td>{{ row['accommodates'] }}</td>
+                    <td>{{ row['bedrooms'] }}</td>
+                    <td>{{ row['bathrooms'] }}</td>
+                    <td>{{ row['price'] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-            <div class="table">
-        <table class="styled-table">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Summary</th>
-                <th>Property Type</th>
-                <th>Accommodates</th>
-                <th>Bedrooms</th>
-                <th>Bathrooms</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for index,row in data.iterrows() %}
-            <tr>
-                <td>{{ row['name'] }}</td>
-                <td>{{ row['summary'] }}</td>
-                <td>{{ row['property_type'] }}</td>
-                <td>{{ row['accommodates'] }}</td>
-                <td>{{ row['bedrooms'] }}</td>
-                <td>{{ row['bathrooms'] }}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    </div>
-     <div class="pagination">
+    <div class="pagination">
         <ul class="pagination-list">
             {% if page > 1 %}
             <li class="pagination-item">
