@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; /* Light grey background for the entire page */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* White background for the content */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle elevation effect */
+}
+
+h1 {
+    color: #89CFF0; /* Baby blue color for headings */
+}
+
+.property-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0; /* Remove space between table cells */
+}
+
+.name-cell {
+    background-color: #89CFF0;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px;
+    width: 30%;
+    text-align: right;
+    border-left: 1px solid #fff; /* Add a white border to the left of name cells */
+    border-top: 1px solid #ccc; /* Add a light gray border to the top of name cells */
+    border-bottom: 1px solid #ccc; /* Add a light gray border to the bottom of name cells */
+}
+
+.value-cell {
+    background-color: #e0e0e0;
+    padding: 8px;
+    border-top: 1px solid #ccc; /* Add a light gray border to the top of value cells */
+    border-bottom: 1px solid #ccc; /* Add a light gray border to the bottom of value cells */
+}
+
+/* Style the odd and even rows with different background colors for better readability */
+.property-table tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.property-table tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline from the link */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth background color transition on hover */
+
+    /* Center the text within the link */
+    text-align: center;
+    line-height: 1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.back-link:hover {
+    background-color: #4a90e2; /* Darker blue color on hover */
+}
