@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ house.name }} - Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='detail_page.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1 style="text-align: center;">{{ house.name }}</h1>
+    <h2>Property Details</h2>
+    <table class="property-table">
+        <tr>
+            <td class="name-cell"><strong>Property Type</strong></td>
+            <td class="value-cell">{{ house.property_type }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Room Type</strong></td>
+            <td class="value-cell">{{ house.room_type }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Bed Type</strong></td>
+            <td class="value-cell">{{ house.bed_type }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Minimum Nights</strong></td>
+            <td class="value-cell">{{ house.minimum_nights }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Maximum Nights</strong></td>
+            <td class="value-cell">{{ house.maximum_nights }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Cancellation Policy</strong></td>
+            <td class="value-cell">{{ house.cancellation_policy }}</td>
+        </tr>
+    </table>
+
+    <h2>House Details</h2>
+    <table class="property-table">
+        <tr>
+            <td class="name-cell"><strong>Accommodates</strong></td>
+            <td class="value-cell">{{ house.accommodates }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Bedrooms</strong></td>
+            <td class="value-cell">{{ house.bedrooms }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Beds</strong></td>
+            <td class="value-cell">{{ house.beds }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Number of Reviews</strong></td>
+            <td class="value-cell">{{ house.number_of_reviews }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Bathrooms</strong></td>
+            <td class="value-cell">{{ house.bathrooms }}</td>
+        </tr>
+    </table>
+
+    <h2>Other Information</h2>
+    <table class="property-table">
+        <tr>
+            <td class="name-cell"><strong>Summary</strong></td>
+            <td class="value-cell">{{ house.summary }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Description</strong></td>
+            <td class="value-cell">{{ house.description }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Neighborhood Overview</strong></td>
+            <td class="value-cell">{{ house.neighborhood_overview }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Notes</strong></td>
+            <td class="value-cell">{{ house.notes }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Transit</strong></td>
+            <td class="value-cell">{{ house.transit }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Access</strong></td>
+            <td class="value-cell">{{ house.access }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>Interaction</strong></td>
+            <td class="value-cell">{{ house.interaction }}</td>
+        </tr>
+        <tr>
+            <td class="name-cell"><strong>House Rules</strong></td>
+            <td class="value-cell">{{ house.house_rules }}</td>
+        </tr>
+    </table>
+
+    <a href="{{ url_for('query.result_all') }}" class="back-link">Back to Result Page</a>
+
+</div>
+</body>
+</html>

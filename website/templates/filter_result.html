@@ -1,0 +1,145 @@
+{% extends "base.html" %} {% block title %}Result{% endblock %} {% block content
+%}
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='result_page.css') }}">
+</head>
+
+<body>
+<p style="color: lightgray; font-family: 'Verdana', sans-serif;">
+This is not modified based on the template. I wrote it myself, so it may be rough...</p>
+<div class="container">
+    <h1 class="centered-heading">Here are the results we find for you!</h1>
+    <div class="filter-bar">
+        <p class="filter-item">Property Type: {% if request.args.get('property_type') %}{{
+            request.args.get('property_type')
+            }}{% else %}Any{% endif %}</p>
+        <p class="filter-item">Accommodates: {% if request.args.get('accommodates') %}{{
+            request.args.get('accommodates')
+            }}{% else %}Any{% endif %}</p>
+        <p class="filter-item">Bedrooms: {% if request.args.get('bedrooms') %}{{ request.args.get('bedrooms') }}{% else
+            %}Any{% endif %}</p>
+        <p class="filter-item">Bathrooms: {% if request.args.get('bathrooms') %}{{ request.args.get('bathrooms') }}{%
+            else
+            %}Any{% endif %}</p>
+
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <h2 class="filter-head">Filter Options</h2>
+            </br>
+            <form method="GET">
+                <div>
+                    <label for="accommodates">Number of accommodates:</label>
+                    <select id="accommodates" name="accommodates">
+                        <option value="">Any</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5+">5+</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="property_type">Property Type:</label>
+                    <select id="property_type" name="property_type">
+                        <option value="">Any</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="House">House</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="bedrooms">Number of bedrooms:</label>
+                    <select id="bedrooms" name="bedrooms">
+                        <option value="">Any</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4+">4+</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="bathrooms">Number of bathrooms:</label>
+                    <select id="bathrooms" name="bathrooms">
+                        <option value="">Any</option>
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                        <option value="2.5">2.5</option>
+                        <option value="3+">3+</option>
+                    </select>
+                </div>
+                <input type="hidden" name="property_type" value="{{ request.args.get('property_type', '') }}">
+                <input type="hidden" name="accommodates" value="{{ request.args.get('accommodates', '') }}">
+                <input type="hidden" name="bedrooms" value="{{ request.args.get('bedrooms', '') }}">
+                <input type="hidden" name="bathrooms" value="{{ request.args.get('bathrooms', '') }}">
+                <div class="button-container">
+                    <button type="submit" class="custom-button">Submit Filter</button>
+                </div>
+            </form>
+        </div>
+        <div class="table">
+            <table class="styled-table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>District</th>
+                    <th>Property Type</th>
+                    <th>Accommodates</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for index,row in data.iterrows() %}
+                <tr>
+                    <td><a href="{{ url_for('query.house_details', house_id=row['id']) }}">{{ row['name'] }}</a></td>
+                    <td>{{ row['city'] }}</td>
+                    <td>{{ row['district'] }}</td>
+                    <td>{{ row['property_type'] }}</td>
+                    <td>{{ row['accommodates'] }}</td>
+                    <td>{{ row['bedrooms'] }}</td>
+                    <td>{{ row['bathrooms'] }}</td>
+                    <td>{{ row['price'] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="pagination">
+        <ul class="pagination-list">
+            {% if page > 1 %}
+            <li class="pagination-item">
+                <a href="{{ url_for('query.result_all', page=1, property_type=property_type, accommodates=accommodates,
+        bedrooms=bedrooms,
+        bathrooms=bathrooms) }}">First</a>
+            </li>
+            <li class="pagination-item">
+                <a href="{{ url_for('query.result_all', page=page-1, property_type=property_type, accommodates=accommodates,
+        bedrooms=bedrooms,
+        bathrooms=bathrooms) }}">Previous</a>
+            </li>
+            {% endif %}
+            <li class="pagination-item">
+                Page {{ page }}/{{ num_pages }}
+            </li>
+            {% if page < num_pages %}
+            <li class="pagination-item">
+                <a href="{{ url_for('query.result_all', page=page+1, property_type=property_type, accommodates=accommodates,
+        bedrooms=bedrooms,
+        bathrooms=bathrooms) }}">Next</a>
+            </li>
+            <li class="pagination-item">
+                <a href="{{ url_for('query.result_all', page=num_pages, property_type=property_type, accommodates=accommodates,
+        bedrooms=bedrooms,
+        bathrooms=bathrooms) }}">Last</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</body>
+
+{% endblock %}
