@@ -7,9 +7,6 @@ from pymongo import MongoClient
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
-# MongoDB Access
-# user_name: user
-# password:bulletin
 connection_string = 'mongodb+srv://user:bulletin@cluster0.anxcbeb.mongodb.net/?retryWrites=true&w=majority'
 client = MongoClient(connection_string)
 

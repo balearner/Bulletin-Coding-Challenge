@@ -3,8 +3,6 @@ from flask_login import login_required, current_user
 import pandas as pd
 from . import housing_db
 import json
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
 
 query = Blueprint('query', __name__)
 housing_collection = housing_db.listingsAndReviews
