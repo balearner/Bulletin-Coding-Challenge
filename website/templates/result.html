@@ -28,8 +28,6 @@
 </head>
 
 <body>
-<p style="color: lightgray; font-family: 'Verdana', sans-serif;">
-This is not modified based on the template. I wrote it myself, so it may be rough...</p>
 <div class="container">
     <h1 class="centered-heading">Find Your Dream Home</h1>
 
@@ -78,56 +76,6 @@ This is not modified based on the template. I wrote it myself, so it may be roug
                         <option value="3+">3+</option>
                     </select>
                 </div>
-                <div class="wrapper">
-                    <div class="values">
-                        <span id="range1">
-                            0
-                        </span>
-                        <span> &dash; </span>
-                        <span id="range2">
-                            100
-                        </span>
-                    </div>
-                    <div class="container">
-                        <div class="slider-track"></div>
-                        <input type="range" min="0" max="100" value="30" id="slider-1" oninput="slideOne()">
-                        <input type="range" min="0" max="100" value="70" id="slider-2" oninput="slideTwo()">
-                    </div>
-
-                    <!--Script-->
-                    <script src="wrapper-script.js"></script>
-                </div>
-
-                <!--Another slide container-->
-                <div class="slidecontainer">
-                    <label for="price">Price range:</label>
-                    <div class="range-label">
-                        <span>Min: <span id="minValue">0</span></span>
-                        <span>Max: <span id="maxValue">1000</span></span>
-                    </div>
-                    <input type="range" min="1" max="1000" id="mixSlider">
-                    <input type="range" min="1" max="1000" id="maxSlider">
-                    <span>Value: <span id="currentValue">{{mixSlider}} to {{mixSlider}}</span></span>
-                </div>
-                <script>
-                    const rangeSlider = document.getElementById('rangeSlider');
-                    const minValue = document.getElementById('minValue');
-                    const maxValue = document.getElementById('maxValue');
-                    const currentValue = document.getElementById('currentValue');
-
-                    rangeSlider.addEventListener('input', () => {
-                        const value = rangeSlider.value;
-                        currentValue.textContent = value;
-                    });
-
-                    // Set initial values
-                    currentValue.textContent = rangeSlider.value;
-                    minValue.textContent = rangeSlider.min;
-                    maxValue.textContent = rangeSlider.max;
-                    rangeSlider.value = (rangeSlider.min + rangeSlider.max) / 2; // Set the initial value to the middle
-                </script>
-
-
                 <input type="hidden" name="property_type" value="{{ request.args.get('property_type', '') }}">
                 <input type="hidden" name="accommodates" value="{{ request.args.get('accommodates', '') }}">
                 <input type="hidden" name="bedrooms" value="{{ request.args.get('bedrooms', '') }}">
